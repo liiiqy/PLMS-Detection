@@ -1,0 +1,37 @@
+{
+    "name": "huashan",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "ResUnet",  
+        "args": {
+            "in_shape": [1,1,1624]
+        }
+    },
+    
+    "data_loader": {
+        "args":{
+            "batch_size": 128,
+            "num_folds": 16
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 0.05,
+            "weight_decay": 0.001,
+            "amsgrad": true
+        }
+    },
+    "loss": "diceloss",
+    "metrics": [
+        "u_f1"
+    ],
+    "trainer": {
+        "epochs": 50,
+        "save_dir": "saved/",
+        "save_period": 50,
+        "verbosity": 2,
+        "monitor": "min val_loss"
+    }
+}
